@@ -41,7 +41,7 @@ public class InformationActivity extends BaseListActivity<InformationBean> {
 
 
     /**
-     * 适配view holer
+     * 适配view holder
      */
     class InformationViewHolder extends BaseViewHolder{
         private CircleImageView circleIv;
