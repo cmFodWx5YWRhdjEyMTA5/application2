@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.dingdong.widget.LogRelativeLayout
+    android:id="@+id/nav_bar"
+    style="@style/title_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+    <FrameLayout
+        android:id="@+id/left"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true">
+
+        <com.example.dingdong.widget.LogImageView
+            android:id="@+id/left_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/title_back_select"
+            android:visibility="gone"
+            />
+
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/left_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:singleLine="true"
+            android:duplicateParentState="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            tools:text="@string/is_cancel"/>
+    </FrameLayout>
+
+
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_20"
+        tools:text="标题"/>
+
+
+    <FrameLayout
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <com.example.dingdong.widget.LogImageView
+            android:id="@+id/right_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:visibility="gone"/>
+
+
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/right_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:singleLine="true"
+            android:duplicateParentState="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right"
+            android:text="@string/is_sure"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/right_staging_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        android:singleLine="true"
+        android:duplicateParentState="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/right"
+        android:gravity="center_vertical"
+        android:text="@string/is_staging"
+        android:layout_marginRight="@dimen/dp_16"
+        android:visibility="gone" />
+
+
+</com.example.dingdong.widget.LogRelativeLayout>

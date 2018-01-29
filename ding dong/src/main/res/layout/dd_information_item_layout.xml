@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wave="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/dp_6"
+    android:minHeight="@dimen/dp_58"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mobile_fixed_left_iv"
+            android:layout_width="@dimen/dp_44"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
+            wave:border_overlay="true"/>
+
+        <com.jw.iworker.widget.logWidget.LogImageView
+            android:id="@+id/cart_vip_logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mobile_fixed_left_iv"
+            android:layout_alignRight="@id/mobile_fixed_left_iv"
+            android:visibility="gone" />
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/mobile_fixed_right_top_pv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/mobile_fixed_left_iv"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textColor="@color/text_black_color"
+            />
+
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/mobile_fixed_center_top_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/mobile_fixed_left_iv"
+            android:layout_toRightOf="@id/mobile_fixed_left_iv"
+            android:layout_toLeftOf="@id/mobile_fixed_right_top_pv"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_black_color"
+            android:lines="1"
+            />
+
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/mobile_fixed_center_bottom_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mobile_fixed_left_iv"
+            android:layout_toRightOf="@id/mobile_fixed_left_iv"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_black_color"
+            />
+
+
+        <com.example.dingdong.widget.LogTextView
+            android:id="@+id/mobile_fixed_right_bottom_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mobile_fixed_left_iv"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/dp_10"
+            android:textColor="@color/text_black_color"
+            android:gravity="right"
+            android:layout_toRightOf="@id/mobile_fixed_center_bottom_tv"
+            android:lines="1"
+            android:ellipsize="middle"
+            android:layout_marginLeft="@dimen/dp_16"
+            />
+    </RelativeLayout>
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/information_theme_message_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_black_color"
+        android:textSize="@dimen/sp_14"
+        />
+    <LinearLayout
+        android:id="@+id/information_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        />
+</LinearLayout>
