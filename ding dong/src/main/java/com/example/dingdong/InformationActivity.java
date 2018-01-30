@@ -4,10 +4,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.dingdong.base.BaseListActivity;
-import com.example.dingdong.bean.InformationBean;
+import com.example.dingdong.common.ACache;
+import com.example.dingdong.db.model.InformationModel;
+import com.example.dingdong.db.model.NewsUserModel;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.LogImageView;
 import com.example.dingdong.widget.LogTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -17,8 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 资讯列表界面
  * 刷新时应以帖子的创建时间来获取20条信息
  */
-
-public class InformationActivity extends BaseListActivity<InformationBean> {
+public class InformationActivity extends BaseListActivity<InformationModel> {
 
     @Override
     public BaseViewHolder onCreateItemView(ViewGroup parent) {
@@ -35,7 +39,7 @@ public class InformationActivity extends BaseListActivity<InformationBean> {
     public void pullAction() {
         customSomeInformationBean();
     }
-    private void   customSomeInformationBean(){
+    private void  customSomeInformationBean(){
 
     }
 
@@ -52,15 +56,6 @@ public class InformationActivity extends BaseListActivity<InformationBean> {
 
         public InformationViewHolder(View itemView) {
             super(itemView);
-        }
-
-        @Override
-        protected void onItemClick(View view, int adapterPosition) {
-
-        }
-
-        @Override
-        public void onBindViewHolder(int position) {
             circleIv=(CircleImageView) findViewById(R.id.mobile_fixed_left_iv);
             vipIv=(LogImageView)findViewById(R.id.cart_vip_logo_iv);
             rightTopTv=(LogTextView)findViewById(R.id.mobile_fixed_right_top_pv);
@@ -70,5 +65,28 @@ public class InformationActivity extends BaseListActivity<InformationBean> {
             themeMessageTv=(LogTextView)findViewById(R.id.information_theme_message_tv);
             customerLLayout=(LinearLayout)findViewById(R.id.information_image_layout);
         }
+
+        @Override
+        protected void onItemClick(View view, int adapterPosition) {
+        }
+
+        @Override
+        public void onBindViewHolder(int position) {
+            InformationModel information=mListData.get(position);
+            if(information!=null){
+                NewsUserModel newsUserModel= information.getNewsUserModel();
+                if(newsUserModel!=null){
+
+                }
+            }
+        }
+    }
+
+    /**
+     * 缓存 Information json
+     * @param informationJson
+     */
+    private void setACacheData(String informationJson){
+
     }
 }
