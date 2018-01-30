@@ -87,6 +87,17 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
      * @param informationJson
      */
     private void setACacheData(String informationJson){
+        ACache aCache=ACache.get(this);
+        aCache.put(this.getClass().getName(),informationJson,2*ACache.TIME_DAY);//缓存2天
+    }
 
+    /**
+     * 获取Information json缓存
+     * @return informationJson
+     */
+    private String getACacheData(){
+        ACache aCache=ACache.get(this);
+        aCache.getAsString(this.getClass().getName());
+        return "";
     }
 }
