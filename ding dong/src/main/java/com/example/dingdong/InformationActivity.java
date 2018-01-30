@@ -1,18 +1,22 @@
 package com.example.dingdong;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.dingdong.base.BaseListActivity;
 import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
+import com.example.dingdong.unit.TimeDateUtil;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.LogImageView;
 import com.example.dingdong.widget.LogTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,22 +29,42 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class InformationActivity extends BaseListActivity<InformationModel> {
 
     @Override
-    public BaseViewHolder onCreateItemView(ViewGroup parent) {
+    public BaseViewHolder onShowCreateItemView(ViewGroup parent) {
         View view=View.inflate(parent.getContext(),R.layout.dd_information_item_layout,null);
         return new InformationViewHolder(view);
     }
 
     @Override
-    public void dropDownAction() {
-
+    public void otherDropDownAction() {
+        customSomeInformationBean();
     }
 
     @Override
-    public void pullAction() {
+    public void otherPullAction() {
         customSomeInformationBean();
     }
-    private void  customSomeInformationBean(){
 
+    /**
+     * 自定义数据
+     */
+    private void  customSomeInformationBean(){
+        List<InformationModel> informationModels=new ArrayList<>();
+        for(int i=0;i<20;i++){
+            InformationModel informationModel=new InformationModel();
+            informationModel.setAddress("湖北省潜江市张金镇");
+            informationModel.setId(i+1);
+            informationModel.setClassify("鱼类");
+            informationModel.setSpecificGoods("小龙虾");
+            informationModel.setCreateDate(1517323344);
+            NewsUserModel userModel=new NewsUserModel();
+            userModel.setUserId(i+1);
+            userModel.setUserName("曹才西");
+            userModel.setVip(true);
+            informationModel.setNewsUserModel(userModel);
+            informationModels.add(informationModel);
+        }
+        mListData.addAll(informationModels);
+        notifyDataSetChanged();
     }
 
 
@@ -56,14 +80,14 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
 
         public InformationViewHolder(View itemView) {
             super(itemView);
-            circleIv=(CircleImageView) findViewById(R.id.mobile_fixed_left_iv);
-            vipIv=(LogImageView)findViewById(R.id.cart_vip_logo_iv);
-            rightTopTv=(LogTextView)findViewById(R.id.mobile_fixed_right_top_pv);
-            centerTopTv=(LogTextView)findViewById(R.id.mobile_fixed_center_top_tv);
-            centerBottomTv=(LogTextView)findViewById(R.id.mobile_fixed_center_bottom_tv);
-            rightBottomTv=(LogTextView)findViewById(R.id.mobile_fixed_right_bottom_tv);
-            themeMessageTv=(LogTextView)findViewById(R.id.information_theme_message_tv);
-            customerLLayout=(LinearLayout)findViewById(R.id.information_image_layout);
+            circleIv=(CircleImageView) itemView.findViewById(R.id.mobile_fixed_left_iv);
+            vipIv=(LogImageView)itemView.findViewById(R.id.cart_vip_logo_iv);
+            rightTopTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_right_top_pv);
+            centerTopTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_center_top_tv);
+            centerBottomTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_center_bottom_tv);
+            rightBottomTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_right_bottom_tv);
+            themeMessageTv=(LogTextView)itemView.findViewById(R.id.information_theme_message_tv);
+            customerLLayout=(LinearLayout)itemView.findViewById(R.id.information_image_layout);
         }
 
         @Override
@@ -76,10 +100,25 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             if(information!=null){
                 NewsUserModel newsUserModel= information.getNewsUserModel();
                 if(newsUserModel!=null){
-
+                    Glide.with(getBaseContext()).load(newsUserModel.getHeadPortrait()).into(circleIv);
+                    if(newsUserModel.isVip()){
+                        vipIv.setVisibility(View.VISIBLE);
+                    }else{
+                        vipIv.setVisibility(View.GONE);
+                    }
+                    centerTopTv.setText(newsUserModel.getUserName());
                 }
+                centerBottomTv.setText(TimeDateUtil.date(TimeDateUtil.DEFAULT_FORMAT_M,information.getCreateDate()));
+                rightTopTv.setText(information.getClassify()+"-"+information.getSpecificGoods());
+                rightBottomTv.setText(information.getAddress());
+                themeMessageTv.setText(information.getMessage());
+                initContentView();
             }
         }
+    }
+
+    private void initContentView(){
+
     }
 
     /**

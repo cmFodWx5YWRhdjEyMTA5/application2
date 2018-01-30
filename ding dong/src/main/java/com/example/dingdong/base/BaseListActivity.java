@@ -1,5 +1,6 @@
 package com.example.dingdong.base;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -27,6 +28,7 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
     @Override
     public void initView() {
         recyclerPushView=(RecyclerPushView)findViewById(R.id.recycle_push_view);
+        recyclerPushView.setRecyclerLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerPushView.setPushRecyclerBacker(pushRecyclerBacker);
         recyclerPushView.setRecycleAdapter(baseListAdapter);
 
@@ -39,7 +41,7 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
     BaseListAdapter<T> baseListAdapter=new BaseListAdapter<T>() {
         @Override
         public BaseViewHolder onCreateItemView(ViewGroup parent) {
-            return onCreateItemView(parent);
+            return onShowCreateItemView(parent);
         }
     };
 
@@ -50,16 +52,21 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
     RecyclerPushView.PushRecyclerBacker pushRecyclerBacker=new RecyclerPushView.PushRecyclerBacker() {
         @Override
         public void dropDownAction() {
-            dropDownAction();
+            otherDropDownAction();
         }
 
         @Override
         public void pullAction() {
-            pullAction();
+            otherPullAction();
         }
     };
-    public abstract BaseViewHolder onCreateItemView(ViewGroup parent);
-    public abstract  void dropDownAction();
-    public abstract  void pullAction();
+
+    public void notifyDataSetChanged(){
+        baseListAdapter.setListData(mListData);
+        baseListAdapter.notifyDataSetChanged();
+    }
+    public abstract BaseViewHolder onShowCreateItemView(ViewGroup parent);
+    public abstract  void otherDropDownAction();
+    public abstract  void otherPullAction();
 
 }

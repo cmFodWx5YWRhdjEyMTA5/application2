@@ -21,7 +21,7 @@
             android:layout_marginBottom="@dimen/dp_6"
             wave:border_overlay="true"/>
 
-        <com.jw.iworker.widget.logWidget.LogImageView
+        <com.example.dingdong.widget.LogImageView
             android:id="@+id/cart_vip_logo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
