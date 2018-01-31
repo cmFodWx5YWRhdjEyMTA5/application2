@@ -30,6 +30,7 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
         recyclerPushView=(RecyclerPushView)findViewById(R.id.recycle_push_view);
         recyclerPushView.setRecyclerLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerPushView.setPushRecyclerBacker(pushRecyclerBacker);
+
         recyclerPushView.setRecycleAdapter(baseListAdapter);
 
     }
@@ -43,7 +44,21 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
         public BaseViewHolder onCreateItemView(ViewGroup parent) {
             return onShowCreateItemView(parent);
         }
+
+        @Override
+        protected int getDataCount() {
+            return getListDataCount();
+        }
     };
+
+    /**
+     * 获取数据列表统计数量
+     *
+     * @return
+     */
+    protected int getListDataCount() {
+        return mListData != null ? mListData.size() : 0;
+    }
 
     @Override
     public void initEvent() {
@@ -61,9 +76,15 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
         }
     };
 
+    public void  setSwipeRefreshing(){
+        recyclerPushView.onRefreshCompleted();
+    }
+
     public void notifyDataSetChanged(){
-        baseListAdapter.setListData(mListData);
-        baseListAdapter.notifyDataSetChanged();
+        getAdapter().notifyDataSetChanged();
+    }
+    public BaseListAdapter getAdapter() {
+        return baseListAdapter;
     }
     public abstract BaseViewHolder onShowCreateItemView(ViewGroup parent);
     public abstract  void otherDropDownAction();

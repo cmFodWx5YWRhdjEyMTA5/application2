@@ -13,15 +13,29 @@ import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.LogImageView;
 import com.example.dingdong.widget.LogTextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 商品列表适配器
  * Created by CCX on 2017/7/11.
  */
 public class ErpGoodsListAdapter extends BaseListAdapter<ErpGoodsListBean>{
+    private List<ErpGoodsListBean> dataList=new ArrayList<>();
     @Override
     public BaseViewHolder onCreateItemView(ViewGroup parent) {
         View view=View.inflate(parent.getContext(), R.layout.erp_goods_list_item_layout,null);
         return new ErpGoodsListHold(view);
+    }
+
+
+    public void setListData(List<ErpGoodsListBean> newDataList){
+        dataList.addAll(newDataList);
+    }
+
+    @Override
+    protected int getDataCount() {
+        return dataList.size();
     }
 
     class ErpGoodsListHold extends BaseViewHolder{
@@ -50,7 +64,7 @@ public class ErpGoodsListAdapter extends BaseListAdapter<ErpGoodsListBean>{
 
         @Override
         public void onBindViewHolder(int position) {
-            ErpGoodsListBean erpGoodsListBean= mListData.get(position);
+            ErpGoodsListBean erpGoodsListBean= dataList.get(position);
             GoodsDescribeTv.setText(erpGoodsListBean.getGoodsName());
         }
     }

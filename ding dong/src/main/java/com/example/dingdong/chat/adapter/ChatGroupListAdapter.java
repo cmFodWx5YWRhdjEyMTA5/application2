@@ -17,6 +17,11 @@ public class ChatGroupListAdapter extends BaseListAdapter{
     }
 
     @Override
+    protected int getDataCount() {
+        return 0;
+    }
+
+    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
     }

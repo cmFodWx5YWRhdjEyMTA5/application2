@@ -23,11 +23,13 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
     private final int PULL_STATE=2;//上拉状态
     private final int IDLE_STATE=0;//闲置状态
     private int RECYCLER_STATE=0;//刷新状态
-    private SwipeRefreshLayout swipeRefreshLayout;
+    public SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private PushRecyclerBacker pushRecyclerBacker;
     private RecyclerView.LayoutManager layoutManager;
     private BaseListAdapter baseListAdapter;
+
+    private boolean mPullRefreshEnabled = true;
     public RecyclerPushView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
@@ -67,9 +69,10 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
                         into=  ((StaggeredGridLayoutManager)layoutManager).findLastVisibleItemPositions(into);
                         visiblePosition=into[0];
                     }
-                    if(layoutManager.getItemCount()-visiblePosition<2){
+                    if(RECYCLER_STATE == IDLE_STATE &&layoutManager.getItemCount()-visiblePosition<2){
                         RECYCLER_STATE=PULL_STATE;
                         swipeRefreshLayout.setEnabled(false);
+                        baseListAdapter.ShowLoadMoreView(true);
                         //更多刷新
                         if(pushRecyclerBacker!=null){
                             pushRecyclerBacker.pullAction();
@@ -124,7 +127,7 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
             swipeRefreshLayout.setRefreshing(false);
         } else if (RECYCLER_STATE == PULL_STATE) {
             baseListAdapter.ShowLoadMoreView(false);
-//            swipeRefreshLayout.setEnabled(!mPullRefreshEnabled ? false : true);
+            swipeRefreshLayout.setEnabled(!mPullRefreshEnabled ? false : true);
         }
         RECYCLER_STATE = IDLE_STATE;
     }
@@ -141,8 +144,13 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
 
     }
 
-    public void enablePullToRefresh(){
-
+    /**
+     * 是否可以下拉
+     * @param enable
+     */
+    public void enablePullToRefresh(boolean enable){
+        mPullRefreshEnabled = enable;
+        swipeRefreshLayout.setEnabled(enable);
     }
 
 }

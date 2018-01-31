@@ -54,6 +54,11 @@ public class ApplicationFragment extends BaseFragment{
                 View view=View.inflate(parent.getContext(),R.layout.dd_application_item_layout,null);
                 return new ApplicationItemView(view);
             }
+
+            @Override
+            protected int getDataCount() {
+                return applicationModels.size();
+            }
         };
         recyclerPushView.setRecycleAdapter(baseListAdapter);
         applicationModels=new ArrayList<>();
@@ -82,8 +87,6 @@ public class ApplicationFragment extends BaseFragment{
         aModel3.setLogo_url("https://img.alicdn.com/bao/uploaded/i2/TB1RhY9RXXXXXXLaXXXXXXXXXXX_!!0-item_pic.jpg_q30.jpg");
         aModel3.setTitle("门店售货");
         applicationModels.add(aModel3);
-
-        baseListAdapter.setListData(applicationModels);
     }
 
     class ApplicationItemView extends BaseViewHolder{

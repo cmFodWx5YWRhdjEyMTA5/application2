@@ -37,11 +37,13 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
     @Override
     public void otherDropDownAction() {
         customSomeInformationBean();
+        setSwipeRefreshing();
     }
 
     @Override
     public void otherPullAction() {
         customSomeInformationBean();
+        setSwipeRefreshing();
     }
 
     /**
