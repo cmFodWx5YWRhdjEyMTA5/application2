@@ -1,4 +1,5 @@
 package com.example.dingdong;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,6 @@ import com.example.dingdong.widget.LogTextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -35,6 +34,12 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
     }
 
     @Override
+    public void initView() {
+        super.initView();
+        recyclerPushView.setBackgroundColor(getResources().getColor(R.color.grey1_f5f5f5));
+    }
+
+    @Override
     public void otherDropDownAction() {
         customSomeInformationBean();
         setSwipeRefreshing();
@@ -44,6 +49,11 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
     public void otherPullAction() {
         customSomeInformationBean();
         setSwipeRefreshing();
+    }
+
+    @Override
+    protected RecyclerView.ItemDecoration addItemDecoration() {
+        return null;
     }
 
     /**
@@ -62,7 +72,9 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             userModel.setUserId(i+1);
             userModel.setUserName("曹才西");
             userModel.setVip(true);
+            userModel.setHeadPortrait("https://file.iworker.cn/inside/get_erp_img/cid:87512/id:2234365/type:0");
             informationModel.setNewsUserModel(userModel);
+            informationModel.setMessage("今天收获满满的一天");
             informationModels.add(informationModel);
         }
         mListData.addAll(informationModels);

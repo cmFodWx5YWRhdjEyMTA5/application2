@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -48,7 +49,6 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
         swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.pull_recycler_swipe_refresh);
         swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView=(RecyclerView)view.findViewById(R.id.pull_recycler_layout);
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -81,8 +81,16 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
                 }
             }
         });
+
         addView(view);
     }
+
+    public void addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
+        if (itemDecoration != null) {
+            recyclerView.addItemDecoration(itemDecoration);
+        }
+    }
+
 
     /**
      * 设置 LayoutManager
@@ -115,6 +123,13 @@ public class RecyclerPushView extends FrameLayout implements SwipeRefreshLayout.
             RECYCLER_STATE=DROPDOEN_STATE;
             pushRecyclerBacker.dropDownAction();
         }
+    }
+
+    public void setSwipeRefreshing(final boolean status) {
+        swipeRefreshLayout.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
+        swipeRefreshLayout.setRefreshing(status);
     }
 
     public interface PushRecyclerBacker{

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import com.example.dingdong.R;
 import com.example.dingdong.widget.Adapter.BaseListAdapter;
 import com.example.dingdong.widget.BaseViewHolder;
+import com.example.dingdong.widget.DividerItemDecoration;
 import com.example.dingdong.widget.RecyclerPushView;
 
 import java.util.ArrayList;
@@ -15,10 +16,11 @@ import java.util.List;
 /**
  * @auther CCX
  * @date 2018/1/26
+ * 基本baseListActivity
  */
 
 public  abstract  class BaseListActivity<T> extends BaseActivity{
-    private RecyclerPushView recyclerPushView;
+    protected RecyclerPushView recyclerPushView;
     protected List<T> mListData=new ArrayList<>();
     @Override
     public int initLayout() {
@@ -30,14 +32,22 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
         recyclerPushView=(RecyclerPushView)findViewById(R.id.recycle_push_view);
         recyclerPushView.setRecyclerLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerPushView.setPushRecyclerBacker(pushRecyclerBacker);
-
         recyclerPushView.setRecycleAdapter(baseListAdapter);
+        recyclerPushView.addItemDecoration(addItemDecoration());
+    }
 
+    /**
+     * 设置item分割线
+     *
+     * @return
+     */
+    protected RecyclerView.ItemDecoration addItemDecoration() {
+        return new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
     }
 
     @Override
     public void initData() {
-
+        recyclerPushView.onRefresh();
     }
     BaseListAdapter<T> baseListAdapter=new BaseListAdapter<T>() {
         @Override
@@ -64,6 +74,7 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
     public void initEvent() {
 
     }
+    //刷新回调
     RecyclerPushView.PushRecyclerBacker pushRecyclerBacker=new RecyclerPushView.PushRecyclerBacker() {
         @Override
         public void dropDownAction() {
