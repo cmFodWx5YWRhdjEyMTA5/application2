@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class InformationModel implements Serializable{
     private long id;//资讯id
     private String message;//资讯信息
+    private String[] imageUrls;//展示图片
     private NewsUserModel newsUserModel;//资讯发布者模型
     private long createDate;//创建时间
     private String address;//创建地址
@@ -70,5 +71,13 @@ public class InformationModel implements Serializable{
 
     public void setSpecificGoods(String specificGoods) {
         this.specificGoods = specificGoods;
+    }
+
+    public String[] getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String[] imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }

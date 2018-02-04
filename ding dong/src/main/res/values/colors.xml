@@ -11,4 +11,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dd_subject_color">#0086c4</color>
     <color name="black">#FF000000</color>
+    <color name="stay_color">#999999</color>
 </resources>

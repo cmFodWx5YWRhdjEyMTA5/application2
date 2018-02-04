@@ -10,8 +10,10 @@ import com.example.dingdong.base.BaseListActivity;
 import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
+import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.unit.TimeDateUtil;
 import com.example.dingdong.widget.BaseViewHolder;
+import com.example.dingdong.widget.FrescoView;
 import com.example.dingdong.widget.LogImageView;
 import com.example.dingdong.widget.LogTextView;
 
@@ -75,7 +77,13 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             userModel.setHeadPortrait("https://file.iworker.cn/inside/get_erp_img/cid:87512/id:2234365/type:0");
             informationModel.setNewsUserModel(userModel);
             informationModel.setMessage("今天收获满满的一天");
+            String[] urls=new String[3];
+            urls[0]= ImageUrlUtils.getImageUrls()[i];
+            urls[1]= ImageUrlUtils.getImageUrls()[i+1];
+            urls[2]= ImageUrlUtils.getImageUrls()[i+2];
+            informationModel.setImageUrls(urls);
             informationModels.add(informationModel);
+
         }
         mListData.addAll(informationModels);
         notifyDataSetChanged();
@@ -90,7 +98,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
         private LogImageView vipIv;
         private LogTextView rightTopTv,centerTopTv,centerBottomTv,rightBottomTv;
         private LogTextView themeMessageTv;
-        private LinearLayout customerLLayout;
+        private FrescoView frescoView;
 
         public InformationViewHolder(View itemView) {
             super(itemView);
@@ -101,7 +109,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             centerBottomTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_center_bottom_tv);
             rightBottomTv=(LogTextView)itemView.findViewById(R.id.mobile_fixed_right_bottom_tv);
             themeMessageTv=(LogTextView)itemView.findViewById(R.id.information_theme_message_tv);
-            customerLLayout=(LinearLayout)itemView.findViewById(R.id.information_image_layout);
+            frescoView=(FrescoView)itemView.findViewById(R.id.information_image_layout);
         }
 
         @Override
@@ -126,6 +134,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
                 rightTopTv.setText(information.getClassify()+"-"+information.getSpecificGoods());
                 rightBottomTv.setText(information.getAddress());
                 themeMessageTv.setText(information.getMessage());
+                frescoView.addFrescoData(information.getImageUrls());
                 initContentView();
             }
         }
