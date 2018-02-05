@@ -25,6 +25,7 @@ public abstract class BaseActivity extends Activity {
         initView();
         initEvent();
         initData();
+        BarColor.setStatusBarColor(this,getResources().getColor(R.color.white));
     }
 
     public abstract int initLayout();
