@@ -1,4 +1,5 @@
 package com.example.dingdong;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.FrescoView;
 import com.example.dingdong.widget.LogImageView;
 import com.example.dingdong.widget.LogTextView;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 刷新时应以帖子的创建时间来获取20条信息
  */
 public class InformationActivity extends BaseListActivity<InformationModel> {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Fresco.initialize(InformationActivity.this);
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public BaseViewHolder onShowCreateItemView(ViewGroup parent) {
@@ -77,10 +85,10 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             userModel.setHeadPortrait("https://file.iworker.cn/inside/get_erp_img/cid:87512/id:2234365/type:0");
             informationModel.setNewsUserModel(userModel);
             informationModel.setMessage("今天收获满满的一天");
-            String[] urls=new String[3];
+            String[] urls=new String[2];
             urls[0]= ImageUrlUtils.getImageUrls()[i];
             urls[1]= ImageUrlUtils.getImageUrls()[i+1];
-            urls[2]= ImageUrlUtils.getImageUrls()[i+2];
+//            urls[2]= ImageUrlUtils.getImageUrls()[i+2];
             informationModel.setImageUrls(urls);
             informationModels.add(informationModel);
 

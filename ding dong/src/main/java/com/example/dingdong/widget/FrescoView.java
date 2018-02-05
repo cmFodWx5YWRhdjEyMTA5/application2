@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.example.dingdong.R;
 import com.example.dingdong.widget.Adapter.FrescoAdapter;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,16 @@ public class FrescoView extends RelativeLayout{
     public FrescoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context=context;
+
         initView();
     }
     private void initView(){
-        View view=View.inflate(context, R.layout.fresco_view_layout,null);
+        View view=View.inflate(context, R.layout.fresco_view_layout,this);
         recyclerView=(RecyclerView)view.findViewById(R.id.fresco_rv);
+        LinearLayoutManager manager= new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(manager);
+        frescoAdapter=new FrescoAdapter(context);
+        recyclerView.setAdapter(frescoAdapter);
     }
 
     /**
@@ -57,8 +63,6 @@ public class FrescoView extends RelativeLayout{
                 setRecyclerViewManagerForTypeThree();
             }
         }
-        frescoAdapter=new FrescoAdapter();
-        recyclerView.setAdapter(frescoAdapter);
         List<String> urlList=new ArrayList<>();
         for(int i=0;i<imageUrls.length;i++){
             urlList.add(imageUrls[i]);

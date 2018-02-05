@@ -100,7 +100,8 @@
             <com.example.dingdong.widget.FrescoView
                 android:id="@+id/information_image_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:minHeight="150dp"
                 android:paddingLeft="@dimen/dp_10"
                 android:background="@color/white"
                 android:orientation="vertical"

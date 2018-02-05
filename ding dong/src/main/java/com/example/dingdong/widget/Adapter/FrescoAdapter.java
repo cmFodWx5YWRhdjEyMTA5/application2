@@ -1,5 +1,6 @@
 package com.example.dingdong.widget.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.dingdong.unit.ViewUtils;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -20,10 +22,14 @@ import java.util.List;
  * Created by CCX on 2018/2/4.
  */
 public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoViewHolder>{
-
+    private Context context;
     private List<String> urls=new ArrayList<>();
     private   RecyclerView mRecyclerView;
 
+
+    public FrescoAdapter(Context context){
+        this.context=context;
+    }
 
     public void setValue(List<String> mValues,  RecyclerView mRecyclerView){
         urls.clear();
@@ -31,10 +37,20 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
         this.mRecyclerView=mRecyclerView;
         this.notifyDataSetChanged();
     }
+    public class FrescoViewHolder extends RecyclerView.ViewHolder{
+        public  SimpleDraweeView mImageView;
+        public FrescoViewHolder(View itemView) {
+            super(itemView);
+            mImageView=(SimpleDraweeView)itemView.findViewById(R.id.item_image_view);
+        }
+    }
+
+
+
 
     @Override
     public FrescoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =View.inflate(parent.getContext(),R.layout.fresco_item_view,null);
+        View view =View.inflate(context,R.layout.fresco_item_view,null);
         return new FrescoViewHolder(view);
     }
 
@@ -42,11 +58,11 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
     public void onBindViewHolder(FrescoViewHolder holder, int position) {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)holder.mImageView.getLayoutParams();
         if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
-            layoutParams.height = 200;
+            layoutParams.height = ViewUtils.dip2px(150);
         } else if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-            layoutParams.height = 600;
+            layoutParams.height =  ViewUtils.dip2px(500);
         } else {
-            layoutParams.height = 800;
+            layoutParams.height = ViewUtils.dip2px(680);
         }
         Uri uri = Uri.parse(urls.get(position));
         holder.mImageView.setImageURI(uri);
@@ -66,21 +82,5 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
         return urls.size();
     }
 
-    public class FrescoViewHolder extends BaseViewHolder{
-        public  SimpleDraweeView mImageView;
-        public FrescoViewHolder(View itemView) {
-            super(itemView);
-            mImageView=(SimpleDraweeView)itemView.findViewById(R.id.item_image_view);
-        }
 
-        @Override
-        protected void onItemClick(View view, int adapterPosition) {
-
-        }
-
-        @Override
-        public void onBindViewHolder(int position) {
-
-        }
-    }
 }
