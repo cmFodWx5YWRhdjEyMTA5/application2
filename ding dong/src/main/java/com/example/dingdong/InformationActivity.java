@@ -148,6 +148,10 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
         }
     }
 
+    private void initFrescoViewHeight(){
+
+    }
+
     private void initContentView(){
 
     }
