@@ -3,6 +3,7 @@ package com.example.dingdong.widget.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.dingdong.home.information.FrescoViewPageActivity;
 import com.example.dingdong.unit.ViewUtils;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
     }
 
     @Override
-    public void onBindViewHolder(FrescoViewHolder holder, int position) {
+    public void onBindViewHolder(FrescoViewHolder holder, final int position) {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)holder.mImageView.getLayoutParams();
         if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
             layoutParams.height = ViewUtils.dip2px(150);
@@ -71,9 +74,10 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    Intent intent = new Intent(mActivity, ViewPagerActivity.class);
-//                    intent.putExtra("position", position);
-//                    mActivity.startActivity(intent);
+                Intent intent = new Intent(context, FrescoViewPageActivity.class);
+                intent.putExtra(FrescoViewPageActivity.IMAGES_URL, (Serializable) urls);
+                intent.putExtra(FrescoViewPageActivity.SHOW_POINT,  position);
+                context.startActivity(intent);
 
             }
         });

@@ -13,7 +13,7 @@ public class InformationModel implements Serializable{
     private String message;//资讯信息
     private String[] imageUrls;//展示图片
     private NewsUserModel newsUserModel;//资讯发布者模型
-    private long createDate;//创建时间
+    private int createDate;//创建时间
     private String address;//创建地址
     private String classify;//分类
     private String specificGoods;//具体物品
@@ -41,11 +41,11 @@ public class InformationModel implements Serializable{
         this.newsUserModel = newsUserModel;
     }
 
-    public long getCreateDate() {
+    public int getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(int createDate) {
         this.createDate = createDate;
     }
 

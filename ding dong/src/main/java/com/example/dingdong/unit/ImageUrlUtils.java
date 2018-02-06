@@ -9,7 +9,7 @@ public class ImageUrlUtils {
         String[] urls = new String[] {
                 "https://static.pexels.com/photos/5854/sea-woman-legs-water-medium.jpg",
                 "https://static.pexels.com/photos/6245/kitchen-cooking-interior-decor-medium.jpg",
-                "https://static.pexels.com/photos/6770/light-road-lights-night-medium.jpg",
+                "https://static.pexels.com/photos/6851/man-love-woman-kiss-medium.jpg",
                 "https://static.pexels.com/photos/6041/nature-grain-moving-cereal-medium.jpg",
                 "https://static.pexels.com/photos/7116/mountains-water-trees-lake-medium.jpg",
                 "https://static.pexels.com/photos/6601/food-plate-yellow-white-medium.jpg",

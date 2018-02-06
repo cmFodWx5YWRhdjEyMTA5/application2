@@ -1,12 +1,11 @@
-package com.example.dingdong;
+package com.example.dingdong.home.information;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.dingdong.R;
 import com.example.dingdong.base.BaseListActivity;
 import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
@@ -40,7 +39,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
 
     @Override
     public BaseViewHolder onShowCreateItemView(ViewGroup parent) {
-        View view=View.inflate(parent.getContext(),R.layout.dd_information_item_layout,null);
+        View view=View.inflate(parent.getContext(), R.layout.dd_information_item_layout,null);
         return new InformationViewHolder(view);
     }
 
@@ -78,7 +77,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             informationModel.setId(i+1);
             informationModel.setClassify("鱼类");
             informationModel.setSpecificGoods("小龙虾");
-            informationModel.setCreateDate(1517323344);
+            informationModel.setCreateDate(1517927247);
             NewsUserModel userModel=new NewsUserModel();
             userModel.setUserId(i+1);
             userModel.setUserName("曹才西");

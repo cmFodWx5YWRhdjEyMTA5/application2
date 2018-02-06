@@ -1,7 +1,8 @@
-package com.example.dingdong;
+package com.example.dingdong.home.information;
 
 import android.os.Bundle;
 
+import com.example.dingdong.R;
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.widget.FrescoView;
