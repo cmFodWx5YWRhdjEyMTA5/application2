@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -60,9 +61,10 @@ public class FrescoAdapter extends RecyclerView.Adapter<FrescoAdapter.FrescoView
         if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
             layoutParams.height = ViewUtils.dip2px(150);
         } else if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-            layoutParams.height =  ViewUtils.dip2px(500);
-        } else {
-            layoutParams.height = ViewUtils.dip2px(680);
+            layoutParams.height =  ViewUtils.dip2px(200);
+        } else if (mRecyclerView.getLayoutManager() instanceof LinearLayoutManager){
+            layoutParams.height = ViewUtils.dip2px(300);
+            layoutParams.width = ViewUtils.dip2px(250);
         }
         Uri uri = Uri.parse(urls.get(position));
         holder.mImageView.setImageURI(uri);

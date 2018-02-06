@@ -13,6 +13,7 @@ import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
 import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.unit.TimeDateUtil;
+import com.example.dingdong.unit.ViewUtils;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.FrescoView;
 import com.example.dingdong.widget.LogImageView;
@@ -85,10 +86,15 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             userModel.setHeadPortrait("https://file.iworker.cn/inside/get_erp_img/cid:87512/id:2234365/type:0");
             informationModel.setNewsUserModel(userModel);
             informationModel.setMessage("今天收获满满的一天");
-            String[] urls=new String[2];
-            urls[0]= ImageUrlUtils.getImageUrls()[i];
-            urls[1]= ImageUrlUtils.getImageUrls()[i+1];
-//            urls[2]= ImageUrlUtils.getImageUrls()[i+2];
+            int urlLenght=i+1;
+            if(urlLenght>=9){
+                urlLenght=9;
+            }
+            String[] urls=new String[urlLenght];
+            int j=urls.length;
+            for(int size=0;size<j;size++){
+                urls[size]= ImageUrlUtils.getImageUrls()[size];
+            }
             informationModel.setImageUrls(urls);
             informationModels.add(informationModel);
 
@@ -142,14 +148,50 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
                 rightTopTv.setText(information.getClassify()+"-"+information.getSpecificGoods());
                 rightBottomTv.setText(information.getAddress());
                 themeMessageTv.setText(information.getMessage());
+                int frescoHeight=initFrescoViewHeight(information.getImageUrls().length);
+                frescoView.getLayoutParams().height=frescoHeight;
                 frescoView.addFrescoData(information.getImageUrls());
                 initContentView();
             }
         }
     }
 
-    private void initFrescoViewHeight(){
+    /**
+     * 计算墙纸高度
+     */
+    private int initFrescoViewHeight(int urlSize){
+        int height=0;
+        switch (urlSize){
+            case 1:
+                height= ViewUtils.dip2px(300);
+                break;
+            case 2:
+                height =  ViewUtils.dip2px(200);
+                break;
+            case 3:
+                height =  ViewUtils.dip2px(150);
+                break;
+            case 4:
+                height =  ViewUtils.dip2px(410);
+                break;
+            case 5:
+                height =  ViewUtils.dip2px(310);
+                break;
+            case 6:
+                height =  ViewUtils.dip2px(310);
+                break;
+            case 7:
+                height =  ViewUtils.dip2px(470);
+                break;
+            case 8:
+                height =  ViewUtils.dip2px(470);
+                break;
+            case 9:
+                height =  ViewUtils.dip2px(470);
+                break;
 
+        }
+        return height;
     }
 
     private void initContentView(){
