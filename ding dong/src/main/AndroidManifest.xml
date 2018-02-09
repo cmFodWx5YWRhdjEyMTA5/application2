@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".home.information.InformationActivity"
+            android:name=".home.HomePageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,9 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.information.FrescoViewPageActivity"/>
-        <activity android:name=".home.HomePageActivity"/>
         <activity android:name=".chat.ChatDetailActivity"/>
-        <activity android:name=".erp.sale.ui.GoodsListActivity"/>
+
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 

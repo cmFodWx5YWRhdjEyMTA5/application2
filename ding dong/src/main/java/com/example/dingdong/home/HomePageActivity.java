@@ -4,6 +4,8 @@ import android.app.FragmentTransaction;
 
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.R;
+import com.example.dingdong.home.information.DInformationFragment;
+import com.example.dingdong.home.message.DHomeMessageFragment;
 
 /**
  * 首页
@@ -12,7 +14,8 @@ import com.example.dingdong.R;
 public class HomePageActivity extends BaseActivity{
     private android.app.FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private ApplicationFragment applicationFragment;
+    private DHomeMessageFragment messageFragment;
+    private DInformationFragment dInformationFragment;
     @Override
     public int initLayout() {
         return R.layout.dd_home_page_layout;
@@ -26,8 +29,8 @@ public class HomePageActivity extends BaseActivity{
 
     @Override
     public void initData() {
-        applicationFragment=new ApplicationFragment();
-        fragmentTransaction.replace(R.id.home_page_fl,applicationFragment);
+        dInformationFragment=new DInformationFragment();
+        fragmentTransaction.replace(R.id.home_page_fl,dInformationFragment);
         fragmentTransaction.commit();
     }
 

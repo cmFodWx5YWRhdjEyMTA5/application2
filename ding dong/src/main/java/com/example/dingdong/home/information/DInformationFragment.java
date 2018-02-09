@@ -1,5 +1,6 @@
 package com.example.dingdong.home.information;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.dingdong.R;
 import com.example.dingdong.base.BaseListActivity;
+import com.example.dingdong.base.BaseListFragment;
 import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
@@ -29,12 +31,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 资讯列表界面
  * 刷新时应以帖子的创建时间来获取20条信息
  */
-public class InformationActivity extends BaseListActivity<InformationModel> {
+public class DInformationFragment extends BaseListFragment<InformationModel> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Fresco.initialize(InformationActivity.this);
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Fresco.initialize(getActivity());
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -44,8 +46,8 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
     }
 
     @Override
-    public void initView() {
-        super.initView();
+    public void initView(View view) {
+        super.initView(view);
         recyclerPushView.setBackgroundColor(getResources().getColor(R.color.grey1_f5f5f5));
     }
 
@@ -135,7 +137,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
             if(information!=null){
                 NewsUserModel newsUserModel= information.getNewsUserModel();
                 if(newsUserModel!=null){
-                    Glide.with(getBaseContext()).load(newsUserModel.getHeadPortrait()).into(circleIv);
+                    Glide.with(getActivity()).load(newsUserModel.getHeadPortrait()).into(circleIv);
                     if(newsUserModel.isVip()){
                         vipIv.setVisibility(View.VISIBLE);
                     }else{
@@ -150,7 +152,6 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
                 int frescoHeight=initFrescoViewHeight(information.getImageUrls().length);
                 frescoView.getLayoutParams().height=frescoHeight;
                 frescoView.addFrescoData(information.getImageUrls());
-                initContentView();
             }
         }
     }
@@ -193,16 +194,13 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
         return height;
     }
 
-    private void initContentView(){
-
-    }
 
     /**
      * 缓存 Information json
      * @param informationJson
      */
     private void setACacheData(String informationJson){
-        ACache aCache=ACache.get(this);
+        ACache aCache=ACache.get(getActivity());
         aCache.put(this.getClass().getName(),informationJson,2*ACache.TIME_DAY);//缓存2天
     }
 
@@ -211,7 +209,7 @@ public class InformationActivity extends BaseListActivity<InformationModel> {
      * @return informationJson
      */
     private String getACacheData(){
-        ACache aCache=ACache.get(this);
+        ACache aCache=ACache.get(getActivity());
         aCache.getAsString(this.getClass().getName());
         return "";
     }

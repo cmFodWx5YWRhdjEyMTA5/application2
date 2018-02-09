@@ -14,28 +14,59 @@ import com.example.dingdong.R;
 
 /**
  * Created by CCX on 2017/8/21.
+ * 基本baseFragment
  */
 public abstract class BaseFragment extends Fragment{
+
+    private boolean isLoadView;//视图是否加载完成
+    private boolean isFragmentVisible;// fragment 是否被显示
+    protected boolean isLazyLoadEnabled; //是否开启懒加载
+
+    private boolean isLoadData;//是否加载了数据;
     protected  View view =null;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        isFragmentVisible =isVisibleToUser;//是否加载当前fragment
+        if(isFragmentVisible &&isLoadView&&isLazyLoadEnabled&&!isLoadData){
+             isLoadData=true;
+             initData();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(initLayout()>0){
             view=inflater.inflate(initLayout(), null);
-            initView();
         }
         return view;
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initEvent();
-        initData();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+        isLoadView =true;
+        if(isLazyLoadEnabled){//开启了懒加载
+            initEvent();
+            if(isFragmentVisible &&!isLoadData){
+                isLoadData=true;
+                initData();
+            }
+        }else{
+            initEvent();
+            if(!isLoadData){
+                isLoadData=true;
+                initData();
+            }
 
+        }
     }
+
     protected abstract int initLayout();
-    protected abstract void initView();
+    protected abstract void initView(View view);
     protected abstract void initEvent();
     protected abstract void initData();
 
@@ -136,4 +167,9 @@ public abstract class BaseFragment extends Fragment{
         ((TextView) view.findViewById(R.id.title_tv)).setText(value);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isLoadView = false;
+    }
 }
