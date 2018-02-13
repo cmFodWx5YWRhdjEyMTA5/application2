@@ -49,6 +49,7 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
     public void initView(View view) {
         super.initView(view);
         recyclerPushView.setBackgroundColor(getResources().getColor(R.color.grey1_f5f5f5));
+        setText(getActivity().getResources().getString(R.string.is_information));
     }
 
     @Override

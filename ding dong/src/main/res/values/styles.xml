@@ -22,11 +22,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="title_layout">
-        <item name="android:background">@color/dd_subject_color</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">@dimen/dp_50</item>
+        <item name="android:layout_height">@dimen/activity_title_height</item>
         <item name="android:layout_alignParentTop">true</item>
     </style>
 
