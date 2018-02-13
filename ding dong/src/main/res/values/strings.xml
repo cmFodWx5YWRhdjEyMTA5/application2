@@ -8,5 +8,6 @@
     <string name="erp_goods_go_to_paying">去结算</string>
     <string name="store_name">蒙牛奶粉</string>
     <string name="application_centre">应用中心</string>
-    <string name="is_information">咨询</string>
+    <string name="is_information">资讯</string>
+    <string name="str_exit_prompt">再按一次退出 果果香</string>
 </resources>

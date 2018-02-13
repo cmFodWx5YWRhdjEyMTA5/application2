@@ -2,6 +2,7 @@ package com.example.dingdong.home;
 
 import android.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.R;
@@ -19,6 +20,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     private DHomeMessageFragment messageFragment;
     private DInformationFragment dInformationFragment;
     private LogImageView informationModelIv,messageModelIv;
+    private long mExitTime=0;
     @Override
     public int initLayout() {
         return R.layout.dd_home_page_layout;
@@ -51,6 +53,16 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.information_model:
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis()-mExitTime>2000){
+            mExitTime= System.currentTimeMillis();
+            Toast.makeText(HomePageActivity.this,getResources().getString(R.string.str_exit_prompt), Toast.LENGTH_SHORT).show();
+        }else {
+            super.onBackPressed();
         }
     }
 }
