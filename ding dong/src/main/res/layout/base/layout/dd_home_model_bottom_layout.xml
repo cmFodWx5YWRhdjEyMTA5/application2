@@ -8,19 +8,24 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
         android:layout_weight="1"
+        android:src="@mipmap/dd_back_prs"
         />
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/message_model"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:src="@mipmap/dd_back_nor"/>
     <com.example.dingdong.widget.LogImageView
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:src="@mipmap/dd_back_prs"/>
     <com.example.dingdong.widget.LogImageView
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:src="@mipmap/dd_back_nor"
+        />
 
 </LinearLayout>

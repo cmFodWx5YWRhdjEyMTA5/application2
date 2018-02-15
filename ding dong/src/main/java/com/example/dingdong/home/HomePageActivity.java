@@ -29,31 +29,52 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void initView() {
         informationModelIv=(LogImageView) findViewById(R.id.information_model);
-        informationModelIv.setOnClickListener(this);
         messageModelIv=(LogImageView)findViewById(R.id.message_model);
-        messageModelIv.setOnClickListener(this);
         fragmentManager=getFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
+
 
     }
 
     @Override
     public void initData() {
         dInformationFragment=new DInformationFragment();
-        fragmentTransaction.replace(R.id.home_page_fl,dInformationFragment);
-        fragmentTransaction.commit();
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.home_page_fl,dInformationFragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     @Override
     public void initEvent() {
-
+        informationModelIv.setOnClickListener(this);
+        messageModelIv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+        fragmentTransaction=fragmentManager.beginTransaction();
         switch (view.getId()){
             case R.id.information_model:
+                hideAllFragment();
+                if(dInformationFragment==null){
+
+                    fragmentTransaction=fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.home_page_fl,dInformationFragment);
+                }else{
+                    fragmentTransaction.show(dInformationFragment);
+                }
+                break;
+            case R.id.message_model:
+                hideAllFragment();
+                if(messageFragment==null){
+                    messageFragment=new DHomeMessageFragment();
+                    fragmentTransaction.add(R.id.home_page_fl,messageFragment);
+
+                }else{
+                    fragmentTransaction.show(messageFragment);
+                }
+                break;
         }
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     @Override
@@ -63,6 +84,19 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
             Toast.makeText(HomePageActivity.this,getResources().getString(R.string.str_exit_prompt), Toast.LENGTH_SHORT).show();
         }else {
             super.onBackPressed();
+        }
+    }
+
+    private void hideAllFragment(){
+        if(fragmentTransaction==null){
+            fragmentManager=getFragmentManager();
+            fragmentTransaction=fragmentManager.beginTransaction();
+        }
+        if(dInformationFragment!=null){
+            fragmentTransaction.hide(dInformationFragment);
+        }
+        if(messageFragment!=null){
+            fragmentTransaction.hide(messageFragment);
         }
     }
 }
