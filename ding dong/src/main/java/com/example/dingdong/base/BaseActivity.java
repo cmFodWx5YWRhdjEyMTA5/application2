@@ -13,7 +13,7 @@ import com.example.dingdong.io.DRetrofitBuild;
 
 /**
  * 基类activity
- * Created by hasee on 2017/4/23.
+ * Created by CCX on 2017/4/23.
  */
 public abstract class BaseActivity extends Activity {
     protected DRetrofitBuild dRetrofitBuild;
@@ -25,7 +25,7 @@ public abstract class BaseActivity extends Activity {
         initView();
         initEvent();
         initData();
-        BarColor.setStatusBarColor(this,getResources().getColor(R.color.white));
+//        BarColor.setStatusBarColor(this,getResources().getColor(R.color.white));
     }
 
     public abstract int initLayout();
