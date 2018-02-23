@@ -2,30 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="@dimen/dp_40">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_weight="1">
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/information_model"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_8"
+        />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"
-        android:src="@mipmap/dd_back_prs"
-        />
+        android:layout_weight="1">
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/message_model"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"
-        android:src="@mipmap/dd_back_nor"/>
-    <com.example.dingdong.widget.LogImageView
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"
-        android:src="@mipmap/dd_back_prs"/>
-    <com.example.dingdong.widget.LogImageView
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1"
-        android:src="@mipmap/dd_back_nor"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_8"
         />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_weight="1">
+    <com.example.dingdong.widget.LogImageView
+        android:id="@+id/market_statistics_model"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_8"
+        />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_weight="1">
+    <com.example.dingdong.widget.LogImageView
+        android:id="@+id/myself_model"
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_8"
+        />
+    </RelativeLayout>
 
 </LinearLayout>

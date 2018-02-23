@@ -19,7 +19,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     private FragmentTransaction fragmentTransaction;
     private DHomeMessageFragment messageFragment;
     private DInformationFragment dInformationFragment;
-    private LogImageView informationModelIv,messageModelIv;
+    private LogImageView informationModelIv,messageModelIv,marketStatisticsModelIv,myselfModelIv;
     private long mExitTime=0;
     @Override
     public int initLayout() {
@@ -30,6 +30,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     public void initView() {
         informationModelIv=(LogImageView) findViewById(R.id.information_model);
         messageModelIv=(LogImageView)findViewById(R.id.message_model);
+        marketStatisticsModelIv=(LogImageView)findViewById(R.id.market_statistics_model);
+        myselfModelIv=(LogImageView)findViewById(R.id.myself_model);
         fragmentManager=getFragmentManager();
 
 
@@ -41,19 +43,24 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.home_page_fl,dInformationFragment);
         fragmentTransaction.commitAllowingStateLoss();
+        setTableVew(1);
     }
 
     @Override
     public void initEvent() {
         informationModelIv.setOnClickListener(this);
         messageModelIv.setOnClickListener(this);
+        marketStatisticsModelIv.setOnClickListener(this);
+        myselfModelIv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         fragmentTransaction=fragmentManager.beginTransaction();
+        int table=1;
         switch (view.getId()){
             case R.id.information_model:
+                table=1;
                 hideAllFragment();
                 if(dInformationFragment==null){
 
@@ -64,6 +71,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                 }
                 break;
             case R.id.message_model:
+                table=2;
                 hideAllFragment();
                 if(messageFragment==null){
                     messageFragment=new DHomeMessageFragment();
@@ -73,8 +81,15 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                     fragmentTransaction.show(messageFragment);
                 }
                 break;
+            case R.id.market_statistics_model:
+                table=3;
+                break;
+            case R.id.myself_model:
+                table=4;
+                break;
         }
         fragmentTransaction.commitAllowingStateLoss();
+        setTableVew(table);
     }
 
     @Override
@@ -97,6 +112,42 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         }
         if(messageFragment!=null){
             fragmentTransaction.hide(messageFragment);
+        }
+    }
+
+    /**
+     *  设置icon 图标
+     *  1 资讯
+     *  2 消息
+     *  3 市场
+     *  4 我的
+     */
+    private void setTableVew(int table){
+        switch (table){
+            case 1:
+                informationModelIv.setBackgroundResource(R.mipmap.home_information_prs);
+                messageModelIv.setBackgroundResource(R.mipmap.home_message_nor);
+                marketStatisticsModelIv.setBackgroundResource(R.mipmap.home_bazaar_nor);
+                myselfModelIv.setBackgroundResource(R.mipmap.home_myself_nor);
+                break;
+            case 2:
+                informationModelIv.setBackgroundResource(R.mipmap.home_information_nor);
+                messageModelIv.setBackgroundResource(R.mipmap.home_message_prs);
+                marketStatisticsModelIv.setBackgroundResource(R.mipmap.home_bazaar_nor);
+                myselfModelIv.setBackgroundResource(R.mipmap.home_myself_nor);
+                break;
+            case 3:
+                informationModelIv.setBackgroundResource(R.mipmap.home_information_nor);
+                messageModelIv.setBackgroundResource(R.mipmap.home_message_nor);
+                marketStatisticsModelIv.setBackgroundResource(R.mipmap.home_bazaar_prs);
+                myselfModelIv.setBackgroundResource(R.mipmap.home_myself_nor);
+                break;
+            case 4:
+                informationModelIv.setBackgroundResource(R.mipmap.home_information_nor);
+                messageModelIv.setBackgroundResource(R.mipmap.home_message_nor);
+                marketStatisticsModelIv.setBackgroundResource(R.mipmap.home_bazaar_nor);
+                myselfModelIv.setBackgroundResource(R.mipmap.home_myself_prs);
+                break;
         }
     }
 }
