@@ -25,6 +25,10 @@ public abstract class BaseFragment extends Fragment{
     private boolean isLoadData;//是否加载了数据;
     protected  View view =null;
 
+    public void enableLazyLoad(){
+        isLazyLoadEnabled = true;
+    }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

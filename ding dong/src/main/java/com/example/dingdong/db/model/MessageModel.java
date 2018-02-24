@@ -7,19 +7,19 @@ import java.io.Serializable;
  * Created by CCX on 2018/2/15.
  */
 public class MessageModel implements Serializable{
-    private NewsUserModel newsUserModel;//资讯发布者模型
+    private String groupHead;//头像
     private String groupName;//群聊名称
     private String summarize;//概述
     private   int lastDate;//最后聊时间
     private String linkKey;//群组link key
     private boolean isMultiPrv;//是否是群聊
 
-    public NewsUserModel getNewsUserModel() {
-        return newsUserModel;
+    public String getGroupHead() {
+        return groupHead;
     }
 
-    public void setNewsUserModel(NewsUserModel newsUserModel) {
-        this.newsUserModel = newsUserModel;
+    public void setGroupHead(String groupHead) {
+        this.groupHead = groupHead;
     }
 
     public String getSummarize() {

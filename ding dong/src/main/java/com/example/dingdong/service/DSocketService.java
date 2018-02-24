@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.example.dingdong.chat.model.ChatMessageModel;
 import com.example.dingdong.socket.DSocket;
 import com.example.dingdong.socket.DSocketMessageBack;
 import org.greenrobot.eventbus.EventBus;
@@ -44,8 +43,8 @@ public class DSocketService extends Service {
             @Override
             public void detailResultChatMessage(Object[] obj) {
                 if(obj!=null){
-                    ChatMessageModel chatMessageModel=new ChatMessageModel();
-                    EventBus.getDefault().post(chatMessageModel);//socket 收到消息后广播消息
+//                    ChatMessageModel chatMessageModel=new ChatMessageModel();
+//                    EventBus.getDefault().post(chatMessageModel);//socket 收到消息后广播消息
                 }
             }
         });

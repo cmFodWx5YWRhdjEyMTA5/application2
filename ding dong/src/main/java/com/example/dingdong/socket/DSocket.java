@@ -1,12 +1,4 @@
 package com.example.dingdong.socket;
-
-
-
-import com.alibaba.fastjson.JSONObject;
-import com.example.dingdong.chat.model.ChatMessageModel;
-
-import org.greenrobot.eventbus.EventBus;
-
 import java.net.URISyntaxException;
 import io.socket.client.IO;
 import io.socket.client.Socket;

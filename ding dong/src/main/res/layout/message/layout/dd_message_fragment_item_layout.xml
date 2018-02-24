@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:wave="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/message_item_head"
+        android:layout_width="@dimen/message_group_item_head"
+        android:layout_height="@dimen/message_group_item_head"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"
+        wave:border_overlay="true"
+        />
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/message_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_black_color_333333"
+        android:textSize="@dimen/sp_12"
+        android:maxLength="16"
+        android:layout_alignTop="@id/message_item_head"
+        android:layout_toRightOf="@id/message_item_head"
+        android:gravity="left"
+        />
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/message_last_replay_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_black_color_333333"
+        android:textSize="@dimen/sp_12"
+        android:layout_alignTop="@id/message_item_head"
+        android:layout_marginRight="@dimen/dp_10"
+        android:gravity="right"
+        android:layout_alignParentRight="true"
+        />
+    <com.example.dingdong.widget.LogTextView
+        android:id="@+id/message_summarize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/text_black_color_666666"
+        android:textSize="@dimen/sp_12"
+        android:layout_alignBottom="@id/message_item_head"
+        android:layout_toRightOf="@id/message_item_head"
+        android:gravity="left"
+        />
+</RelativeLayout>
