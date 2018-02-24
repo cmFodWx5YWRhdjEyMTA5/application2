@@ -1,5 +1,6 @@
 package com.example.dingdong.home.message;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -47,7 +48,16 @@ public class DHomeMessageFragment extends BaseListFragment<MessageModel> {
 
         @Override
         protected void onItemClick(View view, int adapterPosition) {
-
+            MessageModel messageModel=   mListData.get(adapterPosition);
+            //群组不为空
+            if(messageModel!=null){
+                String linkKey=messageModel.getLinkKey();
+                Intent intent=new Intent(getActivity(),ChatDetailActivity.class);
+                intent.putExtra(ChatDetailActivity.MESSAGE_NAME,messageModel.getGroupName());
+                intent.putExtra(ChatDetailActivity.MESSAGE_LINK_KEY,linkKey);
+                intent.putExtra(ChatDetailActivity.MESSAGE_IS_MULTI,messageModel.isMultiPrv());
+                getActivity().startActivity(intent);
+            }
         }
 
         @Override

@@ -20,8 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.information.FrescoViewPageActivity"/>
-        <activity android:name=".chat.ChatDetailActivity"/>
-
+        <activity android:name=".home.message.ChatDetailActivity"/>
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 
