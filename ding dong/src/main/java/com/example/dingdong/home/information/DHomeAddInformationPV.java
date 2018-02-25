@@ -55,8 +55,6 @@ public class DHomeAddInformationPV {
         popupWindow.setHeight(244);
         popupWindow.setContentView(getPopRecyView());
         popupWindow.showAsDropDown(parentView);
-
-        popupWindow.isShowing();
     }
 
     private RecyclerView getPopRecyView(){
@@ -78,6 +76,12 @@ public class DHomeAddInformationPV {
        @Override
        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
            PopHolderView p= (PopHolderView) holder;
+//           RelativeLayout.LayoutParams layoutparam= (RelativeLayout.LayoutParams) p.imageLayout.getLayoutParams();
+//           layoutparam.width=144;
+//           p.imageLayout.setLayoutParams(layoutparam);
+           RelativeLayout.LayoutParams param= (RelativeLayout.LayoutParams) p.imageIv.getLayoutParams();
+           param.addRule(RelativeLayout.CENTER_HORIZONTAL);
+           p.imageIv.setLayoutParams(param);
            p.imageIv.setImageResource(AddInformationType.values()[position].getImageRId());
        }
 
