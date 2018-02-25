@@ -2,6 +2,8 @@ package com.example.dingdong;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.alibaba.fastjson.JSONObject;
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.common.URLConstants;
@@ -24,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        Toast.makeText(getBaseContext(),"1",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent();
         intent.setClass(this, HomePageActivity.class);
         startActivity(intent);
