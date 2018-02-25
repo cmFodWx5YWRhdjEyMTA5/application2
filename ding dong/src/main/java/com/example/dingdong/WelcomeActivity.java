@@ -2,8 +2,6 @@ package com.example.dingdong;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.alibaba.fastjson.JSONObject;
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.common.URLConstants;
@@ -26,7 +24,6 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        Toast.makeText(getBaseContext(),"1",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent();
         intent.setClass(this, HomePageActivity.class);
         startActivity(intent);
@@ -41,7 +38,7 @@ public class WelcomeActivity extends BaseActivity {
 
     private void getUserToken(){
         Map<String,Object> params=new HashMap<>();
-        params.put("x_auth_username","18018789281");
+        params.put("x_auth_username","751321742@qq.com");
         params.put("x_auth_password","123456");
         params.put("x_auth_mode","client_auth");
         dRetrofitBuild.postJsonResultForNet( URLConstants.ACCESS_TOKEN_URL, params, new NetResponseBack.JsonListener() {

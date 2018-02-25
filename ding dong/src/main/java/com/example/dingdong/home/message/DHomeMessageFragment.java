@@ -40,7 +40,6 @@ public class DHomeMessageFragment extends BaseListFragment<MessageModel> {
     @Override
     public void otherDropDownAction() {
         initTestData();
-        Toast.makeText(getActivity(),"群组",Toast.LENGTH_SHORT).show();
     }
 
     @Override
