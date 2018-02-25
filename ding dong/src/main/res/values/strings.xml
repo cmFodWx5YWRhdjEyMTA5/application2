@@ -7,6 +7,8 @@
     <string name="is_sure">确定</string>
     <string name="application_centre">应用中心</string>
     <string name="is_information">资讯</string>
-    <string name="is_message">聊天</string>
+    <string name="is_message">消息</string>
+    <string name="is_market_statistics">市场</string>
+    <string name="is_myself">我的</string>
     <string name="str_exit_prompt">再按一次退出 果果香</string>
 </resources>

@@ -3,54 +3,106 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="@dimen/dp_40">
+    android:layout_height="@dimen/dp_56">
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1">
-    <com.example.dingdong.widget.LogImageView
-        android:id="@+id/information_model"
-        android:layout_height="24dp"
-        android:layout_width="24dp"
-        android:layout_centerInParent="true"
-        android:padding="@dimen/dp_8"
-        />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+        <com.example.dingdong.widget.LogImageView
+            android:id="@+id/information_model"
+            android:layout_height="24dp"
+            android:layout_width="24dp"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="@dimen/dp_6"
+            android:paddingRight="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_4"
+            />
+        <com.example.dingdong.widget.LogTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black_color_333333"
+            android:text="@string/is_information"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/information_model"
+            android:textSize="@dimen/sp_12"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+       >
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/message_model"
         android:layout_height="24dp"
         android:layout_width="24dp"
-        android:layout_centerInParent="true"
-        android:padding="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:layout_centerHorizontal="true"
         />
+        <com.example.dingdong.widget.LogTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black_color_333333"
+            android:text="@string/is_message"
+            android:layout_below="@id/message_model"
+            android:textSize="@dimen/sp_12"
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/market_statistics_model"
         android:layout_height="24dp"
         android:layout_width="24dp"
-        android:layout_centerInParent="true"
-        android:padding="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:layout_centerHorizontal="true"
         />
+        <com.example.dingdong.widget.LogTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black_color_333333"
+            android:text="@string/is_market_statistics"
+            android:layout_below="@id/market_statistics_model"
+            android:textSize="@dimen/sp_12"
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/dp_40"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+       >
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/myself_model"
         android:layout_height="24dp"
         android:layout_width="24dp"
-        android:layout_centerInParent="true"
-        android:padding="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_6"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:layout_centerHorizontal="true"
         />
+        <com.example.dingdong.widget.LogTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black_color_333333"
+            android:text="@string/is_myself"
+            android:layout_below="@id/myself_model"
+            android:textSize="@dimen/sp_12"
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
 
 </LinearLayout>

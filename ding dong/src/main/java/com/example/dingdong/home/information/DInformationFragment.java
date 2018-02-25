@@ -50,6 +50,12 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
         super.initView(view);
         recyclerPushView.setBackgroundColor(getResources().getColor(R.color.grey1_f5f5f5));
         setText(getActivity().getResources().getString(R.string.is_information));
+        setRightIv(R.drawable.title_add_select, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DHomeAddInformationPV dHomeAddInformationPV=new DHomeAddInformationPV(getActivity(),view);
+            }
+        });
     }
 
     @Override

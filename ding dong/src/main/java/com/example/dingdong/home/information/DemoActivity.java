@@ -40,6 +40,5 @@ public class DemoActivity extends BaseActivity{
 
     @Override
     public void initEvent() {
-
     }
 }

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dingdong.R;
+import com.example.dingdong.widget.LogImageView;
+import com.example.dingdong.widget.LogTextView;
 
 /**
  * Created by CCX on 2017/8/21.
@@ -130,6 +132,14 @@ public abstract class BaseFragment extends Fragment{
             textView.setOnClickListener(onClickListener);
         }
         return textView;
+    }
+
+    public LogImageView setRightIv(int rightIvRes, View.OnClickListener onClickListener){
+        LogImageView rightIv = (LogImageView) view.findViewById(R.id.right_iv);
+        rightIv.setVisibility(View.VISIBLE);
+        rightIv.setBackgroundResource(rightIvRes);
+        rightIv.setOnClickListener(onClickListener);
+        return rightIv;
     }
 
     /**
