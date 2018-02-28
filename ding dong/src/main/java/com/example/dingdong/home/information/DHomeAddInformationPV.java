@@ -20,7 +20,9 @@ import com.example.dingdong.widget.LogImageView;
  * 首页新增资讯popupwindow 帮助类
  */
 public class DHomeAddInformationPV {
+    public PopupWindow popupWindow;
     private View  parentView;
+    private PItemClickBack pItemClickBack;
     //可以选择类型
     public enum AddInformationType{
         CHARACTER("文字",R.mipmap.dd_home_add_charcter), PHOTO_ALBUM("相册",R.mipmap.dd_home_add_photo_album),PHOTO("照相",R.mipmap.dd_home_add_photo);
@@ -55,11 +57,16 @@ public class DHomeAddInformationPV {
        initPopupWindow();
     }
 
+    public  void setpItemClickBack(PItemClickBack pItemClickBack){
+        this.pItemClickBack=pItemClickBack;
+
+    }
+
     /**
      * 设置pop 高度、宽度
      */
     private void initPopupWindow(){
-        PopupWindow popupWindow=new PopupWindow(context);
+         popupWindow=new PopupWindow(context);
         ColorDrawable colorDrawable=new ColorDrawable(context.getResources().getColor(R.color.line_color));
         popupWindow.setBackgroundDrawable(colorDrawable);
         popupWindow.setFocusable(true);//点击外能消失
@@ -68,7 +75,7 @@ public class DHomeAddInformationPV {
         popupWindow.setContentView(getPopRView());
 //
         int[] locationXY= handPopLocation();
-        popupWindow.showAsDropDown(parentView,ViewUtils.dip2px(locationXY[0]),0);
+        popupWindow.showAsDropDown(parentView,locationXY[0],0);
 //        popupWindow.showAtLocation(parentView, Gravity.TOP|Gravity.LEFT,ViewUtils.dip2px(locationXY[0]),-ViewUtils.dip2px(locationXY[1]));
     }
 
@@ -112,12 +119,20 @@ public class DHomeAddInformationPV {
        }
 
        @Override
-       public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+       public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
            PopHolderView p= (PopHolderView) holder;
            RelativeLayout.LayoutParams param= (RelativeLayout.LayoutParams) p.imageIv.getLayoutParams();
            param.addRule(RelativeLayout.CENTER_HORIZONTAL);
            p.imageIv.setLayoutParams(param);
            p.imageIv.setImageResource(AddInformationType.values()[position].getImageRId());
+           p.imageLayout.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if(pItemClickBack!=null){
+                       pItemClickBack.backItemPoint(position);
+                   }
+               }
+           });
        }
 
        @Override
@@ -132,7 +147,12 @@ public class DHomeAddInformationPV {
             super(itemView);
             imageLayout=(RelativeLayout)itemView.findViewById(R.id.add_information_type_layout);
             imageIv=(LogImageView)itemView.findViewById(R.id.add_information_type_iv);
+
         }
+    }
+
+    public interface PItemClickBack{
+        void backItemPoint(int point);
     }
 
 }

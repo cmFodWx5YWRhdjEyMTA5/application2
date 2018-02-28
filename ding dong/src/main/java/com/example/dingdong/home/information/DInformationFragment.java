@@ -1,4 +1,5 @@
 package com.example.dingdong.home.information;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.example.dingdong.base.BaseListFragment;
 import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
+import com.example.dingdong.second.newInformation.CreateMessageInformationActivity;
 import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.unit.TimeDateUtil;
 import com.example.dingdong.unit.ViewUtils;
@@ -32,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 刷新时应以帖子的创建时间来获取20条信息
  */
 public class DInformationFragment extends BaseListFragment<InformationModel> {
-
+    private DHomeAddInformationPV dHomeAddInformationPV;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         Fresco.initialize(getActivity());
@@ -53,7 +55,15 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
         setRightIv(R.drawable.title_add_select, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DHomeAddInformationPV dHomeAddInformationPV=new DHomeAddInformationPV(getActivity(),pTitleLayout);
+                dHomeAddInformationPV =new DHomeAddInformationPV(getActivity(),pTitleLayout);
+                dHomeAddInformationPV.setpItemClickBack(new DHomeAddInformationPV.PItemClickBack() {
+                    @Override
+                    public void backItemPoint(int point) {
+                        Intent intent=new Intent();
+                        intent.setClass(getActivity(),CreateMessageInformationActivity.class);
+                        getActivity().startActivity(intent);
+                    }
+                });
             }
         });
     }
@@ -219,5 +229,13 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
         ACache aCache=ACache.get(getActivity());
         aCache.getAsString(this.getClass().getName());
         return "";
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(dHomeAddInformationPV!=null){
+            dHomeAddInformationPV.popupWindow.dismiss();
+        }
     }
 }

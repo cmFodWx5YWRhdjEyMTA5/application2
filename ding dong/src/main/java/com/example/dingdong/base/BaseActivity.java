@@ -24,9 +24,9 @@ public abstract class BaseActivity extends Activity {
         initPublicMeans();
         initView();
         initEvent();
-        initData();
+    initData();
 //        BarColor.setStatusBarColor(this,getResources().getColor(R.color.white));
-    }
+}
 
     public abstract int initLayout();
     public abstract  void initView();

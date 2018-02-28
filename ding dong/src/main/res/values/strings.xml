@@ -2,13 +2,15 @@
     <string name="app_name">叮咚</string>
     <string name="action_settings">Settings</string>
     <string name="is_ensure">确定</string>
-    <string name="is_cancel">取消</string>
+    <string name="is_send">发送</string>
     <string name="is_staging">暂存</string>
+    <string name="is_cancel">取消</string>
     <string name="is_sure">确定</string>
     <string name="application_centre">应用中心</string>
     <string name="is_information">资讯</string>
     <string name="is_message">消息</string>
     <string name="is_market_statistics">市场</string>
     <string name="is_myself">我的</string>
+    <string name="is_send_information">发资讯</string>
     <string name="str_exit_prompt">再按一次退出 果果香</string>
 </resources>

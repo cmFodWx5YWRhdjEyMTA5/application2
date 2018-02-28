@@ -150,4 +150,13 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                 break;
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(dInformationFragment!=null){
+            dInformationFragment.onPause();
+
+        }
+    }
 }

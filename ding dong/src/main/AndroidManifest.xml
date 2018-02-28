@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".home.information.FrescoViewPageActivity"/>
         <activity android:name=".home.message.ChatDetailActivity"/>
+        <activity android:name=".second.newInformation.CreateMessageInformationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 
