@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/title_text_layout"/>
+    <include
+        android:id="@+id/p_title_layout"
+        layout="@layout/title_text_layout"/>
 <com.example.dingdong.widget.RecyclerPushView
     android:id="@+id/recycle_push_view"
     android:layout_width="match_parent"

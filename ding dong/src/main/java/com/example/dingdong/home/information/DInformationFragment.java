@@ -53,7 +53,7 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
         setRightIv(R.drawable.title_add_select, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DHomeAddInformationPV dHomeAddInformationPV=new DHomeAddInformationPV(getActivity(),view);
+                DHomeAddInformationPV dHomeAddInformationPV=new DHomeAddInformationPV(getActivity(),pTitleLayout);
             }
         });
     }

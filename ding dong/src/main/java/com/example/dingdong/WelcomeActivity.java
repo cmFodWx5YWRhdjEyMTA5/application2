@@ -35,7 +35,9 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-
+    /**
+     * 获取token
+     */
     private void getUserToken(){
         Map<String,Object> params=new HashMap<>();
         params.put("x_auth_username","751321742@qq.com");

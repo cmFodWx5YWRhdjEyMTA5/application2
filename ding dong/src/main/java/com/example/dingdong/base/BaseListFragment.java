@@ -24,6 +24,7 @@ public abstract class BaseListFragment<T> extends BaseFragment{
 
     protected RecyclerPushView recyclerPushView;
     protected List<T> mListData=new ArrayList<>();
+    protected  View pTitleLayout;
     @Override
     public int initLayout() {
         return R.layout.base_list_layout;
@@ -32,6 +33,7 @@ public abstract class BaseListFragment<T> extends BaseFragment{
     @Override
     public void initView(View view) {
         recyclerPushView=(RecyclerPushView)view.findViewById(R.id.recycle_push_view);
+        pTitleLayout=view.findViewById(R.id.p_title_layout);
         recyclerPushView.setRecyclerLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerPushView.setPushRecyclerBacker(pushRecyclerBacker);
         recyclerPushView.setRecycleAdapter(baseListAdapter);

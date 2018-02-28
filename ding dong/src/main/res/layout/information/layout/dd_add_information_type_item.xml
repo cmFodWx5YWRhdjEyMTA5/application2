@@ -5,12 +5,12 @@
     <RelativeLayout
         android:id="@+id/add_information_type_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_44"
        >
     <com.example.dingdong.widget.LogImageView
         android:id="@+id/add_information_type_iv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_44"
         android:layout_marginTop="@dimen/dp_6"
         android:layout_centerInParent="true"
         />
