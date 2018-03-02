@@ -19,10 +19,10 @@ import com.example.dingdong.widget.LogImageView;
  * Created by CCX on 2018/2/25.
  * 首页新增资讯popupwindow 帮助类
  */
-public class DHomeAddInformationPV {
-    public PopupWindow popupWindow;
+public class DHomeAddInformationPV extends PopupWindow{
     private View  parentView;
     private PItemClickBack pItemClickBack;
+    private POPDismissBack popDismissBack;
     //可以选择类型
     public enum AddInformationType{
         CHARACTER("文字",R.mipmap.dd_home_add_charcter), PHOTO_ALBUM("相册",R.mipmap.dd_home_add_photo_album),PHOTO("照相",R.mipmap.dd_home_add_photo);
@@ -66,16 +66,24 @@ public class DHomeAddInformationPV {
      * 设置pop 高度、宽度
      */
     private void initPopupWindow(){
-         popupWindow=new PopupWindow(context);
         ColorDrawable colorDrawable=new ColorDrawable(context.getResources().getColor(R.color.line_color));
-        popupWindow.setBackgroundDrawable(colorDrawable);
-        popupWindow.setFocusable(true);//点击外能消失
-        popupWindow.setWidth(ViewUtils.dip2px(60));
-        popupWindow.setHeight(ViewUtils.dip2px(132));
-        popupWindow.setContentView(getPopRView());
+        this.setBackgroundDrawable(colorDrawable);
+        this.setFocusable(true);//点击外能消失
+        this.setWidth(ViewUtils.dip2px(60));
+        this.setHeight(ViewUtils.dip2px(132));
+        this.setContentView(getPopRView());
 //
         int[] locationXY= handPopLocation();
-        popupWindow.showAsDropDown(parentView,locationXY[0],0);
+        this.showAsDropDown(parentView,locationXY[0],0);
+        this.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(popDismissBack!=null){
+                    popDismissBack.pDismissBack();
+                }
+//                dismiss();
+            }
+        });
 //        popupWindow.showAtLocation(parentView, Gravity.TOP|Gravity.LEFT,ViewUtils.dip2px(locationXY[0]),-ViewUtils.dip2px(locationXY[1]));
     }
 
@@ -153,6 +161,16 @@ public class DHomeAddInformationPV {
 
     public interface PItemClickBack{
         void backItemPoint(int point);
+    }
+
+
+
+    public  void POPDismissBack(POPDismissBack popDismissBack){
+        this.popDismissBack=popDismissBack;
+    }
+
+    public interface POPDismissBack{
+        void pDismissBack();
     }
 
 }

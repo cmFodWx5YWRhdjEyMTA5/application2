@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 import com.example.dingdong.R;
+import com.example.dingdong.animator.RotateAnimator;
 import com.example.dingdong.base.BaseListActivity;
 import com.example.dingdong.base.BaseListFragment;
 import com.example.dingdong.common.ACache;
@@ -35,6 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class DInformationFragment extends BaseListFragment<InformationModel> {
     private DHomeAddInformationPV dHomeAddInformationPV;
+    private RotateAnimator rotateAnimator;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         Fresco.initialize(getActivity());
@@ -54,8 +57,19 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
         setText(getActivity().getResources().getString(R.string.is_information));
         setRightIv(R.drawable.title_add_select, new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
+                rotateAnimator  =new RotateAnimator(view,45f);
+                rotateAnimator.startAnimator();
                 dHomeAddInformationPV =new DHomeAddInformationPV(getActivity(),pTitleLayout);
+                dHomeAddInformationPV.POPDismissBack(new DHomeAddInformationPV.POPDismissBack() {
+                    @Override
+                    public void pDismissBack() {
+                        if(rotateAnimator!=null){
+                            rotateAnimator.recoverAnimator();
+                        }
+                    }
+                });
+
                 dHomeAddInformationPV.setpItemClickBack(new DHomeAddInformationPV.PItemClickBack() {
                     @Override
                     public void backItemPoint(int point) {
@@ -235,7 +249,7 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
     public void onPause() {
         super.onPause();
         if(dHomeAddInformationPV!=null){
-            dHomeAddInformationPV.popupWindow.dismiss();
+            dHomeAddInformationPV.dismiss();
         }
     }
 }
