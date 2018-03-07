@@ -23,6 +23,7 @@
         <activity android:name=".home.message.ChatDetailActivity"/>
         <activity android:name=".second.newInformation.CreateMessageInformationActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".second.newInformation.DPhotoWallActivity"/>
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 

@@ -16,6 +16,7 @@ import com.example.dingdong.common.ACache;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
 import com.example.dingdong.second.newInformation.CreateMessageInformationActivity;
+import com.example.dingdong.second.newInformation.DPhotoWallActivity;
 import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.unit.TimeDateUtil;
 import com.example.dingdong.unit.ViewUtils;
@@ -73,9 +74,19 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
                 dHomeAddInformationPV.setpItemClickBack(new DHomeAddInformationPV.PItemClickBack() {
                     @Override
                     public void backItemPoint(int point) {
-                        Intent intent=new Intent();
-                        intent.setClass(getActivity(),CreateMessageInformationActivity.class);
-                        getActivity().startActivity(intent);
+                        if(point==0){//只发文字资讯
+                            Intent intent=new Intent();
+                            intent.setClass(getActivity(),CreateMessageInformationActivity.class);
+                            getActivity().startActivity(intent);
+                        }else if(point==1){//发图片资讯
+                            Intent intent=new Intent();
+                            intent.setClass(getActivity(),DPhotoWallActivity.class);
+                            getActivity().startActivity(intent);
+
+                        }else if(point==2){
+
+                        }
+
                     }
                 });
             }
