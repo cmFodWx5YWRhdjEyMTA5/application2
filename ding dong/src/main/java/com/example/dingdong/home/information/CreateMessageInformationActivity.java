@@ -1,4 +1,4 @@
-package com.example.dingdong.second.newInformation;
+package com.example.dingdong.home.information;
 
 import android.view.View;
 

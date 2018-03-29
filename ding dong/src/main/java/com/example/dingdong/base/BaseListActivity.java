@@ -3,6 +3,7 @@ package com.example.dingdong.base;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.dingdong.R;
 import com.example.dingdong.widget.Adapter.BaseListAdapter;
@@ -30,12 +31,16 @@ public  abstract  class BaseListActivity<T> extends BaseActivity{
     @Override
     public void initView() {
         recyclerPushView=(RecyclerPushView)findViewById(R.id.recycle_push_view);
-        recyclerPushView.setRecyclerLayoutManager(new LinearLayoutManager(getBaseContext()));
+        recyclerPushView.setRecyclerLayoutManager(getLayoutManager());
         recyclerPushView.setPushRecyclerBacker(pushRecyclerBacker);
         recyclerPushView.setRecycleAdapter(baseListAdapter);
         recyclerPushView.addItemDecoration(addItemDecoration());
     }
 
+    public RecyclerView.LayoutManager getLayoutManager(){
+        LinearLayoutManager  linearLayoutManager= new LinearLayoutManager(getBaseContext());
+        return linearLayoutManager;
+    }
     /**
      * 设置item分割线
      *

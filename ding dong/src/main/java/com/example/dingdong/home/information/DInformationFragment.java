@@ -5,18 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 import com.example.dingdong.R;
 import com.example.dingdong.animator.RotateAnimator;
-import com.example.dingdong.base.BaseListActivity;
 import com.example.dingdong.base.BaseListFragment;
 import com.example.dingdong.common.ACache;
+import com.example.dingdong.common.DingWallSelectActivity;
 import com.example.dingdong.db.model.InformationModel;
 import com.example.dingdong.db.model.NewsUserModel;
-import com.example.dingdong.second.newInformation.CreateMessageInformationActivity;
-import com.example.dingdong.second.newInformation.DPhotoWallActivity;
 import com.example.dingdong.unit.ImageUrlUtils;
 import com.example.dingdong.unit.TimeDateUtil;
 import com.example.dingdong.unit.ViewUtils;
@@ -80,7 +77,7 @@ public class DInformationFragment extends BaseListFragment<InformationModel> {
                             getActivity().startActivity(intent);
                         }else if(point==1){//发图片资讯
                             Intent intent=new Intent();
-                            intent.setClass(getActivity(),DPhotoWallActivity.class);
+                            intent.setClass(getActivity(),DingWallSelectActivity.class);
                             getActivity().startActivity(intent);
 
                         }else if(point==2){

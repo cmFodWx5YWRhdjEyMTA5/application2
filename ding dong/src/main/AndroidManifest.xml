@@ -21,12 +21,13 @@
         </activity>
         <activity android:name=".home.information.FrescoViewPageActivity"/>
         <activity android:name=".home.message.ChatDetailActivity"/>
-        <activity android:name=".second.newInformation.CreateMessageInformationActivity"
+        <activity android:name=".home.information.CreateMessageInformationActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
-        <activity android:name=".second.newInformation.DPhotoWallActivity"/>
+        <activity android:name=".common.DingWallSelectActivity"/>
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>
