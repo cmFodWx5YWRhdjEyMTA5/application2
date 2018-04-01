@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".home.HomePageActivity"
+            android:name=".WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,6 +24,7 @@
         <activity android:name=".home.information.CreateMessageInformationActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity android:name=".common.DingWallSelectActivity"/>
+        <activity android:name=".demo.SocketActivity"/>
         <service android:name=".service.DSocketService"/>
         <service android:name=".service.MyService"/>
 

@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.example.dingdong.base.BaseActivity;
 import com.example.dingdong.common.URLConstants;
+import com.example.dingdong.demo.SocketActivity;
 import com.example.dingdong.home.HomePageActivity;
 import com.example.dingdong.io.NetResponseBack;
 import com.example.dingdong.service.MyService;
@@ -25,7 +26,8 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void initData() {
         Intent intent=new Intent();
-        intent.setClass(this, HomePageActivity.class);
+//        intent.setClass(this, HomePageActivity.class);
+        intent.setClass(this,SocketActivity.class);
         startActivity(intent);
         finish();
     }
