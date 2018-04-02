@@ -27,9 +27,9 @@ public class SocketActivity extends BaseActivity {
     private EditText editText;
     private TextView connTv,sendTv,endTv,mTextView;
     private ExecutorService mExecutorService = null;
-    private static final String HOST = "192.168.1.100";
+    private static final String HOST = "192.168.1.102";
     private static final int PORT = 9999;
-    private PrintWriter printWriter;
+    private   BufferedWriter bufferedWriter;
     private BufferedReader in;
     private   Socket socket;
 
@@ -93,8 +93,15 @@ public class SocketActivity extends BaseActivity {
         @Override
         public void run() {
             try {
-                printWriter.println(this.msg);
-                printWriter.flush();
+                bufferedWriter.write(this.msg);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+                if("0".equals(msg)){
+                    bufferedWriter.close();
+                    in.close();
+                    socket.close();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -106,21 +113,25 @@ public class SocketActivity extends BaseActivity {
         public void run() {
             try {
                 socket  = new Socket(HOST, PORT);
-                printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
-                        socket.getOutputStream(), "UTF-8")), true);
+                bufferedWriter =new BufferedWriter(new OutputStreamWriter(
+                        socket.getOutputStream(), "UTF-8"));
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-                receiveMsg();
+                receiveMsg(in);
             } catch (Exception e) {
                 Log.e(TAG, ("connectService:" + e.getMessage()));
             }
         }
     }
 
-    private void receiveMsg() {
-        mExecutorService.execute(new readRunnable());
+    private void receiveMsg(BufferedReader in) {
+        mExecutorService.execute(new readRunnable(in));
     }
 
     public class readRunnable implements Runnable{
+        private BufferedReader in;
+        public readRunnable(BufferedReader in){
+            this.in=in;
+        }
         @Override
         public void run() {
             try {
