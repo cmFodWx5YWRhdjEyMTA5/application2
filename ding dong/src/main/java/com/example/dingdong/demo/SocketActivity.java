@@ -31,6 +31,7 @@ public class SocketActivity extends BaseActivity {
     private static final int PORT = 9999;
     private PrintWriter printWriter;
     private BufferedReader in;
+    private   Socket socket;
 
     private Handler handler=new Handler(){
         @Override
@@ -91,15 +92,20 @@ public class SocketActivity extends BaseActivity {
 
         @Override
         public void run() {
-            printWriter.println(this.msg);
+            try {
+                printWriter.println(this.msg);
+                printWriter.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
     private class connectService implements Runnable {
         @Override
         public void run() {
             try {
-                Socket socket = new Socket(HOST, PORT);
-                socket.setSoTimeout(60000);
+                socket  = new Socket(HOST, PORT);
                 printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
                         socket.getOutputStream(), "UTF-8")), true);
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
@@ -111,19 +117,33 @@ public class SocketActivity extends BaseActivity {
     }
 
     private void receiveMsg() {
-        try {
-             String receiveMsg;
-            while (true) {
-                if ((receiveMsg = in.readLine()) != null) {
-                    Log.d(TAG, "receiveMsg:" + receiveMsg);
-                    Message message=new Message();
-                    message.obj=receiveMsg;
-                    handler.sendMessage(message);
+        mExecutorService.execute(new readRunnable());
+    }
+
+    public class readRunnable implements Runnable{
+        @Override
+        public void run() {
+            try {
+                String receiveMsg;
+
+                while (true) {
+                    if ((receiveMsg = in.readLine()) != null) {
+                        Log.d(TAG, "receiveMsg:" + receiveMsg);
+                        Message message=new Message();
+                        message.obj=receiveMsg;
+                        handler.sendMessage(message);
+                    }
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "receiveMsg: ");
+                e.printStackTrace();
+            }finally {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
-            Log.e(TAG, "receiveMsg: ");
-            e.printStackTrace();
         }
     }
 
