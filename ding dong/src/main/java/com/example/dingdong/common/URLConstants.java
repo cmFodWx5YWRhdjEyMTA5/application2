@@ -14,5 +14,6 @@ public class URLConstants {
      */
     public static final String ACCESS_TOKEN_URL = "oauth2/access_token";
 
+    public static final String GET_DEMOD1="http://192.168.1.103:8080/access_to_information.json";
 
 }

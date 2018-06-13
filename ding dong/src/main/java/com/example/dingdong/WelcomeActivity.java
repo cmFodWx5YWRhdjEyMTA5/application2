@@ -26,15 +26,35 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void initData() {
         Intent intent=new Intent();
-//        intent.setClass(this, HomePageActivity.class);
-        intent.setClass(this,SocketActivity.class);
+        intent.setClass(this, HomePageActivity.class);
+//        intent.setClass(this,SocketActivity.class);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void initEvent() {
+        getDemo1();
+    }
 
+    private void getDemo1(){
+        Map<String,Object> params=new HashMap<>();
+        params.put("name","751321742@qq.com");
+        params.put("pass","123456");
+        params.put("x_auth_mode","client_auth");
+        dRetrofitBuild.getResultForNet(URLConstants.GET_DEMOD1, params, new NetResponseBack.StringJsonListener() {
+            @Override
+            public void onResponse(String resoutStr) {
+                if(resoutStr!=null){
+
+                }
+            }
+        }, new NetResponseBack.ErrorListener() {
+            @Override
+            public void onErrorResponse(String errorResponse) {
+
+            }
+        });
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.example.dingdong.io;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.dingdong.common.URLConstants;
 import com.example.dingdong.io.bean.NetResultBean;
 
@@ -24,7 +25,7 @@ public interface DService{
     Call<JSON> getDDURL();//获取网络请求数据
 
     @GET
-    Call<NetResultBean> getBeanResultForNet(@Url  String requestUrl, @QueryMap Map<String,Object> param);
+    Call<String> getBeanResultForNet(@Url  String requestUrl, @QueryMap Map<String,Object> param);
 
     @POST
     Call<NetResultBean> postBeanResultForNet(@Url  String requestUrl, @Body Map<String,Object> param);

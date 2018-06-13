@@ -7,6 +7,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.dingdong.R;
 import com.example.dingdong.base.BaseListActivity;
+import com.example.dingdong.unit.ViewUtils;
 import com.example.dingdong.widget.BaseViewHolder;
 import com.example.dingdong.widget.LogImageView;
 
@@ -50,8 +52,18 @@ public class DingWallSelectActivity extends BaseListActivity<String>{
     }
 
     @Override
+    public void initView() {
+        super.initView();
+    }
+
+    @Override
+    protected RecyclerView.ItemDecoration addItemDecoration() {
+        return null;
+    }
+
+    @Override
     public void otherDropDownAction() {
-        getAllPictureForCorsor();
+        getAllPictureForCursor();
     }
 
     @Override
@@ -61,15 +73,15 @@ public class DingWallSelectActivity extends BaseListActivity<String>{
 
     @Override
     public RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getBaseContext(),4);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getBaseContext(),3);
         return gridLayoutManager;
     }
 
-    private void getAllPictureForCorsor(){
+    private void getAllPictureForCursor(){
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<String> nImageUrlList=new ArrayList<String>();
+                List<String> nImageUrlList=new ArrayList<>();
                 Cursor cursor= getBaseContext().getContentResolver().query(resolverUrl,selectElement,null,null,MediaStore.Images.Media.DATE_MODIFIED+" desc");
                 while (cursor.moveToNext()){
                     cursor.getInt(cursor.getColumnIndex(selectElement[0]));

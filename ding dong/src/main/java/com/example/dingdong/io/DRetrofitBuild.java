@@ -55,30 +55,34 @@ public class DRetrofitBuild {
         }
     }
 
-    private void getResultForNet(String url, Map<String, Object> param){
-        dService.getBeanResultForNet(url,param).enqueue(new Callback<NetResultBean>() {
+    public  void getResultForNet(String url, Map<String, Object> param,final NetResponseBack.StringJsonListener StringListener, NetResponseBack.ErrorListener errorListener){
+        dService.getBeanResultForNet(url,param).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<NetResultBean> call, Response<NetResultBean> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if(response!=null){
-                    NetResultBean netResultBean=response.body();
+                    if(StringListener!=null){
+                        StringListener.onResponse(response.body());
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<NetResultBean> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
+                if(t!=null){
 
+                }
             }
         });
     }
 
-    private void postResultForNet(String url, Map<String, Object> param, final NetResponseBack.StringJsonListener StringList, NetResponseBack.ErrorListener errorListener) {
+    public void postResultForNet(String url, Map<String, Object> param, final NetResponseBack.StringJsonListener StringListener, NetResponseBack.ErrorListener errorListener) {
         dService.postBeanResultForNet(url, param).enqueue(new Callback<NetResultBean>() {
             @Override
             public void onResponse(Call<NetResultBean> call, Response<NetResultBean> response) {
                 if (response != null) {
                      NetResultBean netResultBean=response.body();
                     if(netResultBean!=null){
-                        StringList.equals(netResultBean.getData());
+                        StringListener.equals(netResultBean.getData());
                     }
                 }
             }

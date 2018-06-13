@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".home.HomePageActivity"/>
         <activity android:name=".home.information.FrescoViewPageActivity"/>
         <activity android:name=".home.message.ChatDetailActivity"/>
         <activity android:name=".home.information.CreateMessageInformationActivity"
